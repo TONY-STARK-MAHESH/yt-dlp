@@ -117,8 +117,11 @@ class DangalPlayIE(DangalPlayBaseIE):
     def _real_extract(self, url):
         if url.split("/")[-2] == "movies":
             import requests, json
-            cont = '/movies/{url.split("/")[-1]}'
-            metadata = json.dumps(requests.post(url="https://ottapi.dangalplay.com/users/get_share_parameters.gzip",headers = {"Content-Type": "application/json"},data=json.dumps({"auth_token":"jqeGWxRKK7FK5zEk3xCM","data":{"content_url":cont}})).json())['data']
+            cont = f'/movies/{url.split("/")[-1]}'
+            print(cont)
+            episode_slug = "movie"
+            series_slug = "movie"
+            metadata = requests.post(url="https://ottapi.dangalplay.com/users/get_share_parameters.gzip",headers = {"Content-Type": "application/json"},data=json.dumps({"auth_token":"jqeGWxRKK7FK5zEk3xCM","data":{"content_url":cont}})).json()['data']
         else:
             series_slug, episode_slug = self._match_valid_url(url).group('series', 'id')
             metadata = self._call_api(
