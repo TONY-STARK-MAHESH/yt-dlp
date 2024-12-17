@@ -114,8 +114,13 @@ class DangalPlayIE(DangalPlayBaseIE):
         }, separators=(',', ':')).encode()
 
     def _real_extract(self, url):
-        series_slug, episode_slug = self._match_valid_url(url).group('series', 'id')
-        metadata = self._call_api(
+        if url.split("/")[-2] == "movies":
+            metadata = self._call_api(
+            f'https://ottapi.dangalplay.com/users/get_share_parameters.gzip',
+            episode_slug, query={'item_language': '',"data":{"content_url":f'/movies/{url.split("/")[-1]}'}})['data']
+        else:
+            series_slug, episode_slug = self._match_valid_url(url).group('series', 'id')
+            metadata = self._call_api(
             f'catalogs/shows/{series_slug}/episodes/{episode_slug}.gzip',
             episode_slug, query={'item_language': ''})['data']
 
