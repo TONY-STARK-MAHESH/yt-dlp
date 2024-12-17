@@ -158,20 +158,20 @@ class DangalPlaySeasonIE(DangalPlayBaseIE):
     IE_NAME = 'dangalplay:season'
     _VALID_URL = r'https?://(?:www\.)?dangalpl.com/shows/(?P<id>[^/?#]+)(?:/(?P<sub>ep-[^/?#]+)/episodes)?/?(?:$|[?#])'
     _TESTS = [{
-        'url': 'https://www.dangalplay.com/shows/kitani-mohabbat-hai-season-1',
+        'url': 'https://www.dangalpl.com/shows/kitani-mohabbat-hai-season-1',
         'playlist_mincount': 170,
         'info_dict': {
             'id': 'kitani-mohabbat-hai-season-1',
         },
     }, {
-        'url': 'https://www.dangalplay.com/shows/kitani-mohabbat-hai-season-1/ep-01-30-1/episodes',
+        'url': 'https://www.dangalpl.com/shows/kitani-mohabbat-hai-season-1/ep-01-30-1/episodes',
         'playlist_count': 30,
         'info_dict': {
             'id': 'kitani-mohabbat-hai-season-1-ep-01-30-1',
         },
     }, {
         # 1 season only, series page is season page
-        'url': 'https://www.dangalplay.com/shows/milke-bhi-hum-na-mile',
+        'url': 'https://www.dangalpl.com/shows/milke-bhi-hum-na-mile',
         'playlist_mincount': 15,
         'info_dict': {
             'id': 'milke-bhi-hum-na-mile',
