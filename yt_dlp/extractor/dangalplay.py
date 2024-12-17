@@ -60,7 +60,7 @@ class DangalPlayBaseIE(InfoExtractor):
 
 class DangalPlayIE(DangalPlayBaseIE):
     IE_NAME = 'dangalplay'
-    _VALID_URL = r'https?://(?:www\.)?dangalplay.com/shows/(?P<series>[^/?#]+)/(?P<id>(?!episodes)[^/?#]+)/?(?:$|[?#])'
+    _VALID_URL = r'https?://(?:www\.)?dangalplay.com/'
     _TESTS = [{
         'url': 'https://www.dangalplay.com/shows/kitani-mohabbat-hai-season-2/kitani-mohabbat-hai-season-2-ep-number-01',
         'info_dict': {
@@ -115,12 +115,11 @@ class DangalPlayIE(DangalPlayBaseIE):
         }, separators=(',', ':')).encode()
 
     def _real_extract(self, url):
-        
         if url.split("/")[-2] == "movies":
-            cont = url.split("/")[-1]
+            cont = '/movies/{url.split("/")[-1]}'
             metadata = self._call_api(
-            f'https://ottapi.dangalplay.com/users/get_share_parameters.gzip',
-            episode_slug, query={'item_language': '',"data":{"content_url":f"/movies/{cont}"}})['data']
+            'https://ottapi.dangalplay.com/users/get_share_parameters.gzip',
+            "movies", query={'item_language': '',"data":{"content_url":cont}})['data']
         else:
             series_slug, episode_slug = self._match_valid_url(url).group('series', 'id')
             metadata = self._call_api(
@@ -157,7 +156,7 @@ class DangalPlayIE(DangalPlayBaseIE):
 
 class DangalPlaySeasonIE(DangalPlayBaseIE):
     IE_NAME = 'dangalplay:season'
-    _VALID_URL = r'https?://(?:www\.)?dangalplay.com/shows/(?P<id>[^/?#]+)(?:/(?P<sub>ep-[^/?#]+)/episodes)?/?(?:$|[?#])'
+    _VALID_URL = r'https?://(?:www\.)?dangalpl.com/shows/(?P<id>[^/?#]+)(?:/(?P<sub>ep-[^/?#]+)/episodes)?/?(?:$|[?#])'
     _TESTS = [{
         'url': 'https://www.dangalplay.com/shows/kitani-mohabbat-hai-season-1',
         'playlist_mincount': 170,
