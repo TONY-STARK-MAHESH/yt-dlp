@@ -60,7 +60,7 @@ class DangalPlayBaseIE(InfoExtractor):
 
 class DangalPlayIE(DangalPlayBaseIE):
     IE_NAME = 'dangalplay'
-    _VALID_URL = r'https?://(?:www\.)?dangalplay.com/(shows|movies)/(?P<series>[^/?#]+)/(?P<id>(?!episodes)[^/?#]+)/?(?:$|[?#])'    
+    _VALID_URL = r'https?://(?:www\.)?dangalplay\.com/(shows|movies)/(?:(?P<series>[^/?#]+)/(?P<id>[^/?#]+)|[^/?#]+)'
     _TESTS = [{
         'url': 'https://www.dangalplay.com/shows/kitani-mohabbat-hai-season-2/kitani-mohabbat-hai-season-2-ep-number-01',
         'info_dict': {
