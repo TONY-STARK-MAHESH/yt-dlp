@@ -11,13 +11,14 @@ from ..utils.traversal import traverse_obj
 
 class DangalPlayBaseIE(InfoExtractor):
     _NETRC_MACHINE = 'dangalplay'
-    _OTV_USER_ID = None
+    _OTV_USER_ID = '47c906778850df6957712a3bfd24c276'
     _LOGIN_HINT = 'Pass credentials as -u "token" -p "USER_ID" where USER_ID is the `otv_user_id` in browser local storage'
     _API_BASE = 'https://ottapi.dangalplay.com'
     _AUTH_TOKEN = 'jqeGWxRKK7FK5zEk3xCM'  # from https://www.dangalplay.com/main.48ad19e24eb46acccef3.js
     _SECRET_KEY = 'f53d31a4377e4ef31fa0'  # same as above
 
     def _perform_login(self, username, password):
+        username = 'token'
         if self._OTV_USER_ID:
             return
         if username != 'token' or not re.fullmatch(r'[\da-f]{32}', password):
