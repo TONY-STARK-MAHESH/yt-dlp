@@ -118,8 +118,8 @@ class DangalPlayIE(DangalPlayBaseIE):
         if url.split("/")[-2] == "movies":
             import requests, json
             cont = f'/movies/{url.split("/")[-1]}'
-            print(cont)
-            episode_slug = "movie"
+            
+            episode_slug = url.split("/")[-1]
             series_slug = "movie"
             metadata = requests.post(url="https://ottapi.dangalplay.com/users/get_share_parameters.gzip",headers = {"Content-Type": "application/json"},data=json.dumps({"auth_token":"jqeGWxRKK7FK5zEk3xCM","data":{"content_url":cont}})).json()['data']
         else:
